@@ -1,0 +1,9 @@
+.container{
+    text-align: center;
+}
+
+#display{
+    margin-left: auto;
+    margin-right: auto;
+    /* border: 1px solid black; */
+}
