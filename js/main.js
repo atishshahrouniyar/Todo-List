@@ -1,9 +1,11 @@
 const input = document.querySelector('#input');
 const display = document.querySelector('#display');
+const edit = document.querySelector('#forEdit');
 
 input.addEventListener('change',displayData);
 
 var index=0;
+var editedRow;
 
 function displayData(event){
     let text = document.createElement('tr');
@@ -21,9 +23,17 @@ function funcDelete(img){
 }
 
 function funcEdit(img) {
-    input.value = img.parentElement.parentElement.children[1].innerText;
-    funcDelete(img);
-    updateIndex();
+    editedRow = img;
+    let input_tag = document.createElement('input');
+    input_tag.value = img.parentElement.parentElement.children[1].innerText;
+    input_tag.setAttribute('class','form-control');
+    input_tag.addEventListener('change', modify);
+    edit.appendChild(input_tag);
+}
+
+function modify(event){
+    editedRow.parentElement.parentElement.children[1].innerText=event.target.value;
+    edit.children[0].remove();
 }
 
 function updateIndex() {
