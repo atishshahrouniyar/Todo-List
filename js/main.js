@@ -17,36 +17,24 @@ inputForm.onsubmit = function(){
     return false;
 }
 
-var editedRow;
-
 function funcDelete(img){
     img.parentElement.parentElement.remove();
     updateIndex();
 }
 
 function funcEdit(img) {
-    editedRow = img;
     let form_tag = document.createElement('form');
     form_tag.setAttribute('id','editForm');
     form_tag.innerHTML = `<input type="text" id="editedText" value=${img.parentElement.parentElement.children[1].innerText}>
     <input type="submit" value="Edit" > `;
     edit.append(form_tag);
 
-    var editForm = document.querySelector('#editForm');
-
-    editForm.onsubmit = function(){
-        console.log('submitted');
-        editedRow.parentElement.parentElement.children[1].innerText = document.querySelector('#editedText').value;
-        edit.children[0].remove();
+    form_tag.onsubmit = function(){
+        img.parentElement.parentElement.children[1].innerText = form_tag.children[0].value;
+        form_tag.remove();
         return false;
     }
 }
-
-
-// function modify(event){
-//     editedRow.parentElement.parentElement.children[1].innerText=event.target.value;
-//     edit.children[0].remove();
-// }
 
 function updateIndex() {
     for(var i=0;i<display.children.length;++i){
