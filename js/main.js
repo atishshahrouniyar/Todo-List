@@ -1,40 +1,52 @@
+const inputForm = document.querySelector('#input-form');
 const input = document.querySelector('#input');
 const display = document.querySelector('#display');
 const edit = document.querySelector('#forEdit');
 
-input.addEventListener('change',displayData);
+var index = 0;
 
-var index=0;
-var editedRow;
-
-function displayData(event){
-    let text = document.createElement('tr');
-    text.innerHTML=`<th scope="row">${++index}</th> <td class='data'>${event.target.value}</td> 
+inputForm.onsubmit = function(){
+    const input_text = input.value;
+    let tr = document.createElement('tr');
+    tr.innerHTML = `<td> ${++index}</td>
+    <td> ${input_text} </td>
     <td> <input type="image" src='img/edit.png' height=20 width=20 onclick="funcEdit(this)"></td>
     <td> <input type="image" src='img/delete.png' height=20 width=20 onclick="funcDelete(this)"></td>`;
-    display.appendChild(text);
-    event.target.value=""; 
+    display.append(tr);
+    input.value='';
+    return false;
 }
+
+var editedRow;
 
 function funcDelete(img){
     img.parentElement.parentElement.remove();
-    console.log(img);
     updateIndex();
 }
 
 function funcEdit(img) {
     editedRow = img;
-    let input_tag = document.createElement('input');
-    input_tag.value = img.parentElement.parentElement.children[1].innerText;
-    input_tag.setAttribute('class','form-control');
-    input_tag.addEventListener('change', modify);
-    edit.appendChild(input_tag);
+    let form_tag = document.createElement('form');
+    form_tag.setAttribute('id','editForm');
+    form_tag.innerHTML = `<input type="text" id="editedText" value=${img.parentElement.parentElement.children[1].innerText}>
+    <input type="submit" value="Edit" > `;
+    edit.append(form_tag);
+
+    var editForm = document.querySelector('#editForm');
+
+    editForm.onsubmit = function(){
+        console.log('submitted');
+        editedRow.parentElement.parentElement.children[1].innerText = document.querySelector('#editedText').value;
+        edit.children[0].remove();
+        return false;
+    }
 }
 
-function modify(event){
-    editedRow.parentElement.parentElement.children[1].innerText=event.target.value;
-    edit.children[0].remove();
-}
+
+// function modify(event){
+//     editedRow.parentElement.parentElement.children[1].innerText=event.target.value;
+//     edit.children[0].remove();
+// }
 
 function updateIndex() {
     for(var i=0;i<display.children.length;++i){
