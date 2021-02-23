@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <title>To Do</title>
 </head>
@@ -12,13 +11,13 @@
     <div class="container">
         <h1>To Do List!</h1>
         <form id="input-form">
-            <input placeholder="Add list..." id="input" class="form-control">
-            <input type="submit">
+            <input placeholder="Add list..." id="input" class="form-control" type="text">
+            <input type="submit" class="submit-button">
         </form>
         <br>
         <br>
         <div>
-            <table class="table table-hover table-dark">
+            <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">S. No.</th>
@@ -31,6 +30,7 @@
                 </tbody>
             </table>
         </div>
+        <br>
         <div id="forEdit">
         </div>
     </div>

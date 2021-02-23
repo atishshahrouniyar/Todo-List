@@ -24,9 +24,9 @@ function funcDelete(img){
 
 function funcEdit(img) {
     let form_tag = document.createElement('form');
-    form_tag.setAttribute('id','editForm');
-    form_tag.innerHTML = `<input type="text" id="editedText" value=${img.parentElement.parentElement.children[1].innerText}>
-    <input type="submit" value="Edit" > `;
+    form_tag.setAttribute('id','edit-form');
+    form_tag.innerHTML = `<input type="text" class = "form-control" value=${img.parentElement.parentElement.children[1].innerText}>
+    <input type="submit" value="Edit" class="submit-button"> `;
     edit.append(form_tag);
 
     form_tag.onsubmit = function(){
